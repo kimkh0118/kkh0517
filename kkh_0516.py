@@ -18,7 +18,7 @@ cursor = db.cursor()
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS test_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    num INT NOT NULL
+    numbers INT NOT NULL
 )
 """)
 db.commit()

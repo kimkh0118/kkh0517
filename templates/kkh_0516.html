@@ -16,7 +16,7 @@
             const val = document.getElementById('num').value;
             const resultText = document.getElementById('result');
 
-            const response = await fetch('https://laziness-chapped-laziness.ngrok-free.dev/su/jin',{
+            const response = await fetch('/su/jin',{
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({ inputNumber: val})
