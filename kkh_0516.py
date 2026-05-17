@@ -27,7 +27,7 @@ db.commit()
 def restart():
     data = request.get_json()
     input_value = data.get('inputNumber')
-    sql = "INSERT INTO numbers (value) values(%s)"
+    sql = "INSERT INTO test_table (numbers) values(%s)"
     cursor.execute(sql, [input_value,])
     db.commit()
 
