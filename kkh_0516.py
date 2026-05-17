@@ -32,6 +32,9 @@ def restart():
     sql = "INSERT INTO test_table (numbers) values(%s)"
     cursor2.execute(sql, [input_value,])
     db.commit()
+
+    cursor2.execute("SELECT * FROM test_table;")
+    print("🔥 현재 DB에 저장된 전체 데이터:", cursor2.fetchall())
     cursor2.close()
     return jsonify({"status": "success" , "message": f"{input_value}저장 완료!"})
 
@@ -40,11 +43,7 @@ def home():
     return render_template('kkh_0516.html')
 
 
-@app.route('/')
-def show():
-    cursor2 = db.cursor()
-    cursor2.execute("SELECT * FROM test_table;")
-    return jsonify(cursor2.fetchall())
+
 
 
 
