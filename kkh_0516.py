@@ -40,6 +40,13 @@ def home():
     return render_template('kkh_0516.html')
 
 
+@app.route('/')
+def show():
+    cursor2 = db.cursor()
+    cursor2.execute("SELECT * FROM test_table;")
+    return jsonify(cursor2.fetchall())
+
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=8080, debug=False)
