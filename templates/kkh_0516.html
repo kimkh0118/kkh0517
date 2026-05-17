@@ -10,11 +10,13 @@
     <input type="number" id="num">
     <button onclick="sendData()">DB저장</button>
     <p id="result"></p>
+    <p id="db"></p>
 
     <script>
         async function sendData(){
             const val = document.getElementById('num').value;
             const resultText = document.getElementById('result');
+            const resultdb = document.getElementById('db');
 
             const response = await fetch('/su/jin',{
                 method: 'POST',
@@ -24,6 +26,7 @@
 
         const result = await response.json()
         resultText.innerText= result.message;
+        resultdb.innerText=result.db;
         }
     </script>
     

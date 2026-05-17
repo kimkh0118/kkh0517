@@ -34,9 +34,9 @@ def restart():
     db.commit()
 
     cursor2.execute("SELECT * FROM test_table;")
-    print("🔥 현재 DB에 저장된 전체 데이터:", cursor2.fetchall())
+    all_data = cursor2.fetchall()
     cursor2.close()
-    return jsonify({"status": "success" , "message": f"{input_value}저장 완료!"})
+    return jsonify({"status": "success" , "message": f"{input_value}저장 완료!", "db":all_data})
 
 @app.route('/', methods=['GET'])
 def home():
