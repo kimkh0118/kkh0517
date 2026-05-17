@@ -15,6 +15,7 @@ db = mysql.connector.connect(
 )
 
 cursor = db.cursor()
+cursor.execute("DROP TABLE IF EXISTS test_table;")
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS test_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -22,15 +23,17 @@ CREATE TABLE IF NOT EXISTS test_table (
 )
 """)
 db.commit()
+cursor.close()
 
 @app.route('/su/jin', methods=['POST'])
 def restart():
+    cursor2 = db.cursor()
     data = request.get_json()
     input_value = data.get('inputNumber')
     sql = "INSERT INTO test_table (numbers) values(%s)"
-    cursor.execute(sql, [input_value,])
+    cursor2.execute(sql, [input_value,])
     db.commit()
-
+    cursor2.close()
     return jsonify({"status": "success" , "message": f"{input_value}저장 완료!"})
 
 @app.route('/', methods=['GET'])
